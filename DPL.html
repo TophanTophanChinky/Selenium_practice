@@ -1,0 +1,576 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>DPL 2025</title>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            text-align: center;-->
+<!--            background-color: #222;-->
+<!--            color: white;-->
+<!--            padding: 50px;-->
+<!--        }-->
+<!--        h1 {-->
+<!--            font-size: 28px;-->
+<!--            color: #ffcc00;-->
+<!--        }-->
+<!--        #timer {-->
+<!--            font-size: 48px;-->
+<!--            font-weight: bold;-->
+<!--            color: #00ff00;-->
+<!--            background-color: black;-->
+<!--            padding: 15px;-->
+<!--            display: inline-block;-->
+<!--            border-radius: 10px;-->
+<!--            text-transform: uppercase;-->
+<!--        }-->
+<!--        button {-->
+<!--            margin-top: 20px;-->
+<!--            font-size: 18px;-->
+<!--            padding: 10px 20px;-->
+<!--            cursor: pointer;-->
+<!--            background-color: #ff6600;-->
+<!--            color: white;-->
+<!--            border: none;-->
+<!--            border-radius: 5px;-->
+<!--        }-->
+<!--        button:hover {-->
+<!--            background-color: #cc5500;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>DPL 2025</h1>-->
+<!--    <p id="timer">LOADING...</p>-->
+<!--    <button onclick="startTimer()">Start</button>-->
+
+
+<!--    <script>-->
+<!--        let initialDuration = (84 * 24 * 60 * 60) + (7 * 60 * 60); // 84 days + 7 hours in seconds-->
+<!--        let endTime = localStorage.getItem("endTime") ? parseInt(localStorage.getItem("endTime")) : (Date.now() + initialDuration * 1000);-->
+<!--        let timerInterval;-->
+
+<!--        function updateTimerDisplay() {-->
+<!--            let remainingTime = Math.max(0, Math.floor((endTime - Date.now()) / 1000));-->
+
+<!--            let days = Math.floor(remainingTime / (24 * 3600));-->
+<!--            let hours = Math.floor((remainingTime % (24 * 3600)) / 3600);-->
+<!--            let minutes = Math.floor((remainingTime % 3600) / 60);-->
+<!--            let seconds = remainingTime % 60;-->
+
+<!--            document.getElementById("timer").innerText =-->
+<!--                `${String(days).padStart(2, '0')}:${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;-->
+
+<!--            if (remainingTime <= 0) {-->
+<!--                clearInterval(timerInterval);-->
+<!--                alert("TIME'S UP!");-->
+<!--                localStorage.removeItem("endTime");-->
+<!--            }-->
+<!--        }-->
+
+<!--        function startTimer() {-->
+<!--            if (!localStorage.getItem("endTime")) {-->
+<!--                endTime = Date.now() + initialDuration * 1000;-->
+<!--                localStorage.setItem("endTime", endTime);-->
+<!--            }-->
+<!--            if (!timerInterval) {-->
+<!--                timerInterval = setInterval(updateTimerDisplay, 1000);-->
+<!--            }-->
+<!--        }-->
+
+<!--        function resetTimer() {-->
+<!--            clearInterval(timerInterval);-->
+<!--            localStorage.removeItem("endTime");-->
+<!--            endTime = Date.now() + initialDuration * 1000;-->
+<!--            localStorage.setItem("endTime", endTime);-->
+<!--            updateTimerDisplay();-->
+<!--            startTimer();-->
+<!--        }-->
+
+<!--        updateTimerDisplay();-->
+<!--        startTimer();-->
+<!--    </script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>84-Day 7-Hour Countdown Timer</title>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: 'Arial', sans-serif;-->
+<!--            text-align: center;-->
+<!--            background-color: #121212;-->
+<!--            color: white;-->
+<!--            padding: 50px;-->
+<!--        }-->
+<!--        h1 {-->
+<!--            font-size: 30px;-->
+<!--            color: #FFD700;-->
+<!--            text-shadow: 2px 2px 5px #000;-->
+<!--        }-->
+<!--        #timer {-->
+<!--            font-size: 55px;-->
+<!--            font-weight: bold;-->
+<!--            color: #00FF00;-->
+<!--            background-color: #000;-->
+<!--            padding: 20px;-->
+<!--            display: inline-block;-->
+<!--            border-radius: 10px;-->
+<!--            text-transform: uppercase;-->
+<!--            box-shadow: 0px 0px 10px #00FF00;-->
+<!--        }-->
+<!--        button {-->
+<!--            margin-top: 20px;-->
+<!--            font-size: 18px;-->
+<!--            padding: 12px 25px;-->
+<!--            cursor: pointer;-->
+<!--            background-color: #FF4500;-->
+<!--            color: white;-->
+<!--            border: none;-->
+<!--            border-radius: 5px;-->
+<!--            font-weight: bold;-->
+<!--            transition: 0.3s;-->
+<!--        }-->
+<!--        button:hover {-->
+<!--            background-color: #FF6347;-->
+<!--        }-->
+<!--        @keyframes blink {-->
+<!--            0% {color: red;}-->
+<!--            50% {color: yellow;}-->
+<!--            100% {color: red;}-->
+<!--        }-->
+<!--        .blink {-->
+<!--            animation: blink 1s infinite;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>DPL 2025</h1>-->
+<!--    <h1>starts on</h1>-->
+<!--    <p id="timer">LOADING...</p>-->
+<!--    <button onclick="startTimer()">Start</button>-->
+<!--&lt;!&ndash;    <button onclick="resetTimer()">Reset</button>&ndash;&gt;-->
+<!--    <audio id="alarm-sound" src="https://www.soundjay.com/button/beep-07.wav"></audio>-->
+
+<!--    <script>-->
+<!--        let initialDuration = (84 * 24 * 60 * 60) + (7 * 60 * 60); // 84 days + 7 hours in seconds-->
+<!--        let endTime = localStorage.getItem("endTime") ? parseInt(localStorage.getItem("endTime")) : (Date.now() + initialDuration * 1000);-->
+<!--        let timerInterval;-->
+
+<!--        function updateTimerDisplay() {-->
+<!--            let remainingTime = Math.max(0, Math.floor((endTime - Date.now()) / 1000));-->
+
+<!--            let days = Math.floor(remainingTime / (24 * 3600));-->
+<!--            let hours = Math.floor((remainingTime % (24 * 3600)) / 3600);-->
+<!--            let minutes = Math.floor((remainingTime % 3600) / 60);-->
+<!--            let seconds = remainingTime % 60;-->
+
+<!--            document.getElementById("timer").innerText =-->
+<!--                `${String(days).padStart(2, '0')}:${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;-->
+
+<!--            if (remainingTime <= 0) {-->
+<!--                clearInterval(timerInterval);-->
+<!--                document.getElementById("timer").classList.add("blink");-->
+<!--                document.getElementById("alarm-sound").play();-->
+<!--                alert("⏰ TIME'S UP!");-->
+<!--                localStorage.removeItem("endTime");-->
+<!--            }-->
+<!--        }-->
+
+<!--        function startTimer() {-->
+<!--            if (!localStorage.getItem("endTime")) {-->
+<!--                endTime = Date.now() + initialDuration * 1000;-->
+<!--                localStorage.setItem("endTime", endTime);-->
+<!--            }-->
+<!--            if (!timerInterval) {-->
+<!--                timerInterval = setInterval(updateTimerDisplay, 1000);-->
+<!--            }-->
+<!--        }-->
+
+<!--        function resetTimer() {-->
+<!--            clearInterval(timerInterval);-->
+<!--            localStorage.removeItem("endTime");-->
+<!--            document.getElementById("timer").classList.remove("blink");-->
+<!--            endTime = Date.now() + initialDuration * 1000;-->
+<!--            localStorage.setItem("endTime", endTime);-->
+<!--            updateTimerDisplay();-->
+<!--            startTimer();-->
+<!--        }-->
+
+<!--        updateTimerDisplay();-->
+<!--        startTimer();-->
+<!--    </script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>84-DAY 7-HOUR COUNTDOWN TIMER</title>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: 'Arial', sans-serif;-->
+<!--            text-align: center;-->
+<!--            background-color: #121212;-->
+<!--            color: white;-->
+<!--            padding: 50px;-->
+<!--        }-->
+<!--        h1 {-->
+<!--            font-size: 50px; /* Increased font size */-->
+<!--            font-weight: bold;-->
+<!--            color: #FFD700;-->
+<!--            text-shadow: 4px 4px 10px #000;-->
+<!--            text-transform: uppercase;-->
+<!--        }-->
+<!--        #timer {-->
+<!--            font-size: 60px;-->
+<!--            font-weight: bold;-->
+<!--            color: #00FF00;-->
+<!--            background-color: #000;-->
+<!--            padding: 20px;-->
+<!--            display: inline-block;-->
+<!--            border-radius: 10px;-->
+<!--            text-transform: uppercase;-->
+<!--            box-shadow: 0px 0px 10px #00FF00;-->
+<!--        }-->
+<!--        button {-->
+<!--            margin-top: 20px;-->
+<!--            font-size: 22px;-->
+<!--            padding: 15px 30px;-->
+<!--            cursor: pointer;-->
+<!--            background-color: #FF4500;-->
+<!--            color: white;-->
+<!--            border: none;-->
+<!--            border-radius: 5px;-->
+<!--            font-weight: bold;-->
+<!--            transition: 0.3s;-->
+<!--        }-->
+<!--        button:hover {-->
+<!--            background-color: #FF6347;-->
+<!--        }-->
+<!--        @keyframes blink {-->
+<!--            0% {color: red;}-->
+<!--            50% {color: yellow;}-->
+<!--            100% {color: red;}-->
+<!--        }-->
+<!--        .blink {-->
+<!--            animation: blink 1s infinite;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>DPL 2025</h1>-->
+<!--    <h1>Starts on</h1>-->
+<!--    <p id="timer">LOADING...</p>-->
+<!--    <button onclick="startTimer()">START</button>-->
+
+<!--    <audio id="alarm-sound" src="https://www.soundjay.com/button/beep-07.wav"></audio>-->
+
+<!--    <script>-->
+<!--        let initialDuration = (84 * 24 * 60 * 60) + (7 * 60 * 60); // 84 days + 7 hours in seconds-->
+<!--        let endTime = localStorage.getItem("endTime") ? parseInt(localStorage.getItem("endTime")) : (Date.now() + initialDuration * 1000);-->
+<!--        let timerInterval;-->
+
+<!--        function updateTimerDisplay() {-->
+<!--            let remainingTime = Math.max(0, Math.floor((endTime - Date.now()) / 1000));-->
+
+<!--            let days = Math.floor(remainingTime / (24 * 3600));-->
+<!--            let hours = Math.floor((remainingTime % (24 * 3600)) / 3600);-->
+<!--            let minutes = Math.floor((remainingTime % 3600) / 60);-->
+<!--            let seconds = remainingTime % 60;-->
+
+<!--            document.getElementById("timer").innerText =-->
+<!--                `${String(days).padStart(2, '0')}:${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;-->
+
+<!--            if (remainingTime <= 0) {-->
+<!--                clearInterval(timerInterval);-->
+<!--                document.getElementById("timer").classList.add("blink");-->
+<!--                document.getElementById("alarm-sound").play();-->
+<!--                alert("⏰ TIME'S UP!");-->
+<!--                localStorage.removeItem("endTime");-->
+<!--            }-->
+<!--        }-->
+
+<!--        function startTimer() {-->
+<!--            if (!localStorage.getItem("endTime")) {-->
+<!--                endTime = Date.now() + initialDuration * 1000;-->
+<!--                localStorage.setItem("endTime", endTime);-->
+<!--            }-->
+<!--            if (!timerInterval) {-->
+<!--                timerInterval = setInterval(updateTimerDisplay, 1000);-->
+<!--            }-->
+<!--        }-->
+
+<!--        function resetTimer() {-->
+<!--            clearInterval(timerInterval);-->
+<!--            localStorage.removeItem("endTime");-->
+<!--            document.getElementById("timer").classList.remove("blink");-->
+<!--            endTime = Date.now() + initialDuration * 1000;-->
+<!--            localStorage.setItem("endTime", endTime);-->
+<!--            updateTimerDisplay();-->
+<!--            startTimer();-->
+<!--        }-->
+
+<!--        updateTimerDisplay();-->
+<!--        startTimer();-->
+<!--    </script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>84-DAY 1-MIN COUNTDOWN TIMER</title>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: 'Arial', sans-serif;-->
+<!--            text-align: center;-->
+<!--            background-color: #121212;-->
+<!--            color: white;-->
+<!--            padding: 50px;-->
+<!--        }-->
+<!--        h1 {-->
+<!--            font-size: 50px;-->
+<!--            font-weight: bold;-->
+<!--            color: #FFD700;-->
+<!--            text-shadow: 4px 4px 10px #000;-->
+<!--            text-transform: uppercase;-->
+<!--        }-->
+<!--        #timer {-->
+<!--            font-size: 60px;-->
+<!--            font-weight: bold;-->
+<!--            color: #00FF00;-->
+<!--            background-color: #000;-->
+<!--            padding: 20px;-->
+<!--            display: inline-block;-->
+<!--            border-radius: 10px;-->
+<!--            text-transform: uppercase;-->
+<!--            box-shadow: 0px 0px 10px #00FF00;-->
+<!--        }-->
+<!--        button {-->
+<!--            margin-top: 20px;-->
+<!--            font-size: 22px;-->
+<!--            padding: 15px 30px;-->
+<!--            cursor: pointer;-->
+<!--            background-color: #FF4500;-->
+<!--            color: white;-->
+<!--            border: none;-->
+<!--            border-radius: 5px;-->
+<!--            font-weight: bold;-->
+<!--            transition: 0.3s;-->
+<!--        }-->
+<!--        button:hover {-->
+<!--            background-color: #FF6347;-->
+<!--        }-->
+<!--        @keyframes blink {-->
+<!--            0% {color: red;}-->
+<!--            50% {color: yellow;}-->
+<!--            100% {color: red;}-->
+<!--        }-->
+<!--        .blink {-->
+<!--            animation: blink 1s infinite;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>DPL 2025</h1>-->
+<!--    <h1>Starts on</h1>-->
+<!--    <p id="timer">LOADING...</p>-->
+<!--    <button onclick="startTimer()">START</button>-->
+
+<!--    <audio id="alarm-sound" src="https://www.soundjay.com/button/beep-07.wav"></audio>-->
+
+<!--    <script>-->
+<!--        let initialDuration = (84 * 24 * 60 * 60) + (1 * 60); // 84 days + 1 minute in seconds-->
+<!--        let endTime = localStorage.getItem("endTime") ? parseInt(localStorage.getItem("endTime")) : (Date.now() + initialDuration * 1000);-->
+<!--        let timerInterval;-->
+
+<!--        function updateTimerDisplay() {-->
+<!--            let remainingTime = Math.max(0, Math.floor((endTime - Date.now()) / 1000));-->
+
+<!--            let days = Math.floor(remainingTime / (24 * 3600));-->
+<!--            let hours = Math.floor((remainingTime % (24 * 3600)) / 3600);-->
+<!--            let minutes = Math.floor((remainingTime % 3600) / 60);-->
+<!--            let seconds = remainingTime % 60;-->
+
+<!--            document.getElementById("timer").innerText =-->
+<!--                `${String(days).padStart(2, '0')}:${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;-->
+
+<!--            if (remainingTime <= 0) {-->
+<!--                clearInterval(timerInterval);-->
+<!--                document.getElementById("timer").classList.add("blink");-->
+<!--                document.getElementById("alarm-sound").play();-->
+<!--                alert("⏰ TIME'S UP!");-->
+<!--                localStorage.removeItem("endTime");-->
+<!--            }-->
+<!--        }-->
+
+<!--        function startTimer() {-->
+<!--            if (!localStorage.getItem("endTime")) {-->
+<!--                endTime = Date.now() + initialDuration * 1000;-->
+<!--                localStorage.setItem("endTime", endTime);-->
+<!--            }-->
+<!--            if (!timerInterval) {-->
+<!--                timerInterval = setInterval(updateTimerDisplay, 1000);-->
+<!--            }-->
+<!--        }-->
+
+<!--        function resetTimer() {-->
+<!--            clearInterval(timerInterval);-->
+<!--            localStorage.removeItem("endTime");-->
+<!--            document.getElementById("timer").classList.remove("blink");-->
+<!--            endTime = Date.now() + initialDuration * 1000;-->
+<!--            localStorage.setItem("endTime", endTime);-->
+<!--            updateTimerDisplay();-->
+<!--            startTimer();-->
+<!--        }-->
+
+<!--        updateTimerDisplay();-->
+<!--        startTimer();-->
+<!--    </script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>84-DAY 1-MIN COUNTDOWN TIMER</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-image: url('https://images.unsplash.com/photo-1579988267552-3e1cf34b53d3?auto=format&fit=crop&w=1950&q=80');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            background-size: cover;
+            color: white;
+            padding: 50px;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 50px;
+            font-weight: bold;
+            color: #FFD700;
+            text-shadow: 4px 4px 10px #000;
+            text-transform: uppercase;
+        }
+
+        #timer {
+            font-size: 60px;
+            font-weight: bold;
+            color: #00FF00;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            display: inline-block;
+            border-radius: 10px;
+            text-transform: uppercase;
+            box-shadow: 0px 0px 10px #00FF00;
+        }
+
+        button {
+            margin-top: 20px;
+            font-size: 22px;
+            padding: 15px 30px;
+            cursor: pointer;
+            background-color: #FF4500;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #FF6347;
+        }
+
+        @keyframes blink {
+            0% { color: red; }
+            50% { color: yellow; }
+            100% { color: red; }
+        }
+
+        .blink {
+            animation: blink 1s infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>DPL 2025</h1>
+    <h1>Starts on</h1>
+    <p id="timer">LOADING...</p>
+    <button onclick="startTimer()">START</button>
+
+    <audio id="alarm-sound" src="https://www.soundjay.com/button/beep-07.wav"></audio>
+
+    <script>
+        let initialDuration = (84 * 24 * 60 * 60) + (1 * 60); // 84 days + 1 minute
+        let endTime = localStorage.getItem("endTime") ? parseInt(localStorage.getItem("endTime")) : (Date.now() + initialDuration * 1000);
+        let timerInterval;
+
+        function updateTimerDisplay() {
+            let remainingTime = Math.max(0, Math.floor((endTime - Date.now()) / 1000));
+
+            let days = Math.floor(remainingTime / (24 * 3600));
+            let hours = Math.floor((remainingTime % (24 * 3600)) / 3600);
+            let minutes = Math.floor((remainingTime % 3600) / 60);
+            let seconds = remainingTime % 60;
+
+            document.getElementById("timer").innerText =
+                `${String(days).padStart(2, '0')}:${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+            if (remainingTime <= 0) {
+                clearInterval(timerInterval);
+                document.getElementById("timer").classList.add("blink");
+                document.getElementById("alarm-sound").play();
+                alert("⏰ TIME'S UP!");
+                localStorage.removeItem("endTime");
+            }
+        }
+
+        function startTimer() {
+            if (!localStorage.getItem("endTime")) {
+                endTime = Date.now() + initialDuration * 1000;
+                localStorage.setItem("endTime", endTime);
+            }
+            if (!timerInterval) {
+                timerInterval = setInterval(updateTimerDisplay, 1000);
+            }
+        }
+
+        updateTimerDisplay();
+        startTimer();
+    </script>
+</body>
+
+</html>
+
+
